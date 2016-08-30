@@ -85,8 +85,6 @@ $(document).ready(function(){
 				tasks = [];
 			}
 
-			var taskList = JSON.parse(localStorage.getItem('tasks'));
-
 			// New Task Object
 			var new_task = {
 				"id": id,
