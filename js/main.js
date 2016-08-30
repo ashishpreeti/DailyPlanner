@@ -94,7 +94,7 @@ $(document).ready(function(){
 				"task_priority": task_priority,
 				"task_date": task_date,
 				"task_time": task_time
-			}
+			};
 
 			tasks.push(new_task);
 			localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -196,7 +196,7 @@ $(document).ready(function(){
 // Function for getting single task
 function getTask(){
 	var $_GET = getQueryParams(document.location.search);
-	id = $_GET['id'];
+	var id = $_GET['id'];
 
 	var taskList = JSON.parse(localStorage.getItem('tasks'));
 
