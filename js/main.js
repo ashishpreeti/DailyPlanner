@@ -44,7 +44,7 @@ $(document).ready(function(){
 				"task_priority": task_priority,
 				"task_date": task_date,
 				"task_time": task_time
-			}
+			};
 
 			tasks.push(new_task);
 			localStorage.setItem('tasks', JSON.stringify(tasks));
