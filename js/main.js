@@ -31,8 +31,6 @@ $(document).ready(function(){
 			taskList = taskList.sort(sortByTime);
 		}
 
-		// Set Counter
-		var i = 0;
 		// Check tasks
 		if(localStorage.getItem('tasks') != null){
 			// Loop through and display
@@ -62,10 +60,10 @@ $(document).ready(function(){
 		var newDate = new Date();
 		id = newDate.getTime();
 
-		var task = $('#task').val();
-		var task_priority = $('#priority').val();
-		var task_date = $('#date').val();
-		var task_time = $('#time').val();
+		var task = getValueFor('#task');
+		var task_priority = getValueFor('#priority');
+		var task_date = getValueFor('#date');
+		var task_time = getValueFor('#time');
 
 		// Simple Validation
 		if(task == ''){
@@ -105,14 +103,24 @@ $(document).ready(function(){
 		}
 	}
 
+	function getValueFor(id) {
+       return $(id).val();
+    }
+
+
+    var id, task, task_priority, task_date, task_time, tasks;
+    function init() {
+        id =  getValueFor('#task_id');
+        task = getValueFor('#task');
+        task_priority = getValueFor('#priority');
+        task_date = getValueFor('#date');
+        task_time = getValueFor('#time');
+        tasks = [];
+    }
 
 	// Function to update tasks
 	function updateTask(e){
-		var id = $('#task_id').val();
-		var task = $('#task').val();
-		var task_priority = $('#priority').val();
-		var task_date = $('#date').val();
-		var task_time = $('#time').val();
+        init();
 
 		taskList = JSON.parse(localStorage.getItem('tasks'));
 
@@ -139,11 +147,10 @@ $(document).ready(function(){
 			tasks = JSON.parse(localStorage.getItem('tasks'));
 
 			//Check Tasks
-			if(tasks == null){
+			if(tasks === null){
 				tasks = [];
 			}
 
-			var taskList = JSON.parse(localStorage.getItem('tasks'));
 
 			// New Task Object
 			var new_task = {
@@ -152,7 +159,7 @@ $(document).ready(function(){
 				"task_priority": task_priority,
 				"task_date": task_date,
 				"task_time": task_time
-			}
+			};
 
 			tasks.push(new_task);
 			localStorage.setItem('tasks', JSON.stringify(tasks));
