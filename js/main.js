@@ -1,7 +1,43 @@
 $(document).ready(function(){
+	// AddTask Event
 	$('#add-task-form').on('submit', function(e){
 		addTask(e);
 	});
+
+	displayTasks();
+
+	// Function to display tasks
+	function displayTasks(){
+		var taskList =  JSON.parse(localStorage.getItem('tasks'));
+
+		// Sort Tasks
+		if(taskList != null){
+			taskList = taskList.sort(sortByTime);
+		}
+
+		// Set Counter
+		var i = 0;
+		// Check tasks
+		if(localStorage.getItem('tasks') != null){
+			// Loop through and display
+			$.each(taskList, function(key, value){
+				$('#task-table').append('<tr id="'+ value.id +'">' +
+										'<td>' + value.task + '</td>' +
+										'<td>' + value.task_priority + '</td>' +
+										'<td>' + value.task_date + '</td>' +
+										'<td>' + value.task_time + '</td>' +
+										'<td><a href="edit.html?id='+ value.id +'">Edit</a> | <a href="#" id="remove-task" data-id="'+ value.id +'">Remove</a></td>' +
+										'</tr>');
+			})
+		}
+	}
+
+	// Function to sort tasks
+	function sortByTime(a, b){
+		var aTime = a.task_time;
+		var bTime = b.task_time;
+		return ((aTime < bTime) ? -1 : ((aTime > bTime) ? 1 : 0));
+	}
 
 
 	// Function to add a task
@@ -44,7 +80,7 @@ $(document).ready(function(){
 				"task_priority": task_priority,
 				"task_date": task_date,
 				"task_time": task_time
-			};
+			}
 
 			tasks.push(new_task);
 			localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -52,4 +88,5 @@ $(document).ready(function(){
 			console.log('Task Added');
 		}
 	}
+
 });
