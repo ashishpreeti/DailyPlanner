@@ -123,23 +123,23 @@ $(document).ready(function(){
 		taskList = JSON.parse(localStorage.getItem('tasks'));
 
 		for(var i=0; i < taskList.length; i++){
-			if(taskList[i].id === id){
+			if(taskList[i].id == id){
 				taskList.splice(i,1)
 			}
 			localStorage.setItem('tasks', JSON.stringify(taskList));
 		}
 
 		// Simple Validation
-		if(task === ''){
+		if(task == ''){
 			alert('Task is required');
 			e.preventDefault();
-		} else if(task_date === '') {
+		} else if(task_date == '') {
 			alert('Date is required');
 			e.preventDefault();
-		} else if(task_time === ''){
+		} else if(task_time == ''){
 			alert('Time is required');
 			e.preventDefault();
-		} else if(task_priority === ''){
+		} else if(task_priority == ''){
 			task_priority = 'normal';
 		} else {
 			tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -170,7 +170,7 @@ $(document).ready(function(){
 			var taskList = JSON.parse(localStorage.getItem('tasks'));
 
 			for(var i=0; i < taskList.length; i++){
-			if(taskList[i].id === id){
+			if(taskList[i].id == id){
 				taskList.splice(i,1)
 			}
 			localStorage.setItem('tasks', JSON.stringify(taskList));
@@ -199,7 +199,7 @@ function getTask(){
 	var taskList = JSON.parse(localStorage.getItem('tasks'));
 
 	for(var i=0; i < taskList.length; i++){
-		if(taskList[i].id === id){
+		if(taskList[i].id == id){
 			$('#edit-task-form #task_id').val(taskList[i].id);
 			$('#edit-task-form #task').val(taskList[i].task);
 			$('#edit-task-form #priority').val(taskList[i].task_priority);
