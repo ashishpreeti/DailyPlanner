@@ -120,7 +120,7 @@ $(document).ready(function(){
 	function updateTask(e){
         init();
 
-		taskList = JSON.parse(localStorage.getItem('tasks'));
+		var taskList = JSON.parse(localStorage.getItem('tasks'));
 
 		for(var i=0; i < taskList.length; i++){
 			if(taskList[i].id == id){
